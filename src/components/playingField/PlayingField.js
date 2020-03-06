@@ -11,7 +11,13 @@ class PlayingField extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.startGame && this.props.startGame !== prevProps.startGame) {
-      this.setState({ winner: "" });
+      console.log("запуск ЖЦ СТАРТ");
+      this.setState({
+        playingCell: [],
+        playerWin: 0,
+        computerWin: 0,
+        winner: ""
+      });
       this.choicePlayCell();
     }
   }
@@ -44,10 +50,18 @@ class PlayingField extends Component {
     ) {
       this.setState({ winner: "No Winner" });
       this.props.winnerRecord(this.state.winner);
-    } else {
-      console.log("повторно игру запустили");
-      this.setState({ playerWin: 0, computerWin: 0 });
     }
+    // else {
+    //   console.log("повторно игру запустили");
+    //   console.log(
+    //     "this.props.startGame",
+    //     this.props.startGame,
+    //     arrayCellsNotPlay.length
+    //   );
+    //   this.setState({ playerWin: 0, computerWin: 0 });
+
+    //   this.props.stopPlay();
+    // }
   };
 
   winnerCheck = () => {
@@ -71,8 +85,7 @@ class PlayingField extends Component {
   timer = playCell => {
     setTimeout(() => {
       this.playerLose(playCell);
-    }, 2000);
-    //  this.props.delay);
+    }, this.props.delay);
   };
 
   playerWin = e => {

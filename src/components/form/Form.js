@@ -17,15 +17,11 @@ class Form extends Component {
     const { userName } = this.state;
     e.preventDefault();
     this.props.startPlay(userName);
-    this.setState({
-      selectMode: "",
-      userName: ""
-    });
   };
 
   render() {
     const { selectMode, userName } = this.state;
-    const { optionsSelect, buttonPlay } = this.props;
+    const { optionsSelect, buttonPlay, disabled } = this.props;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -53,7 +49,9 @@ class Form extends Component {
             placeholder="Enter your name"
             value={userName}
           ></input>
-          <button type="submit">{buttonPlay}</button>
+          <button type="submit" disabled={disabled}>
+            {buttonPlay}
+          </button>
         </form>
       </div>
     );

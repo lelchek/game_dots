@@ -13,6 +13,7 @@ class App extends Component {
     optionsSelect: [],
     gameMode: {},
     selectMode: {},
+    selectModeSelect: "",
     startGame: false,
     arrayCells: [],
     buttonPlay: "Play"
@@ -20,7 +21,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getGameMode();
-    // this.getWinners();
+    this.getWinners();
   }
   componentDidUpdate() {}
 
@@ -40,16 +41,24 @@ class App extends Component {
   };
 
   startPlay = userName => {
-    // this.setState({ startGame: false });
+    console.log("Start");
+    this.drawField(this.state.selectModeSelect);
     this.setState({
       userName,
       startGame: true
     });
   };
 
-  drawField = selectMode => {
-    const fieldSize = this.state.gameMode[selectMode];
+  stopPlay = () => {
+    console.log("STOP");
+    this.setState({ startGame: false });
+  };
+
+  drawField = selectModeSelect => {
+    console.log("Эперерисовка и фолс");
+    const fieldSize = this.state.gameMode[selectModeSelect];
     this.setState({
+      selectModeSelect,
       selectMode: fieldSize,
       startGame: false
     });
@@ -74,10 +83,11 @@ class App extends Component {
       date: dateWinner
     };
     this.setState({ buttonPlay: "Play Again" });
+    this.stopPlay();
     console.log("winner:", idWinner, winner, dateWinner);
     console.log("objWinner", objWinner);
-    // await this.postWinner(objWinner);
-    // await this.getWinners();
+    await this.postWinner(objWinner);
+    await this.getWinners();
   };
 
   render() {
@@ -97,6 +107,7 @@ class App extends Component {
           startPlay={this.startPlay}
           drawField={this.drawField}
           buttonPlay={buttonPlay}
+          disabled={startGame}
         />
         <PlayingField
           fieldSize={selectMode.field}
@@ -106,6 +117,7 @@ class App extends Component {
           startGame={startGame}
           userName={userName}
           winnerRecord={this.winnerRecord}
+          stopPlay={this.stopPlay}
         />
         <LeaderBoard winners={winners} />
       </div>
