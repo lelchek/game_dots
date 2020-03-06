@@ -1,10 +1,11 @@
 import React from "react";
+import css from "./leaderBoard.module.css";
 
 const Winner = ({ winner, date }) => (
   <>
-    <li>
-      <span>{winner}</span>
-      <span>{date}</span>
+    <li className={css.item}>
+      <span className={css.span}>{winner}</span>
+      <span className={css.span}>{date}</span>
     </li>
   </>
 );

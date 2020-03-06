@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import shortId from "shortid";
-import Form from "./components/form/Form";
+import FormGame from "./components/formGame/FormGame";
 import PlayingField from "./components/playingField/PlayingField";
 import LeaderBoard from "./components/leaderBoard/LeaderBoard";
 import services from "./services";
@@ -102,7 +102,7 @@ class App extends Component {
     } = this.state;
     return (
       <div>
-        <Form
+        <FormGame
           optionsSelect={optionsSelect}
           startPlay={this.startPlay}
           drawField={this.drawField}

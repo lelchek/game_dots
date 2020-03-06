@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import css from "./formGame.module.css";
 
-class Form extends Component {
+class FormGame extends Component {
   state = {
     selectMode: "",
     userName: ""
@@ -23,9 +24,10 @@ class Form extends Component {
     const { selectMode, userName } = this.state;
     const { optionsSelect, buttonPlay, disabled } = this.props;
     return (
-      <div>
+      <div className={css.container}>
         <form onSubmit={this.handleSubmit}>
           <select
+            className={css.select}
             required
             name="selectMode"
             onChange={this.handleChange}
@@ -43,13 +45,14 @@ class Form extends Component {
             })}
           </select>
           <input
+            className={css.input}
             required
             name="userName"
             onChange={this.handleChange}
             placeholder="Enter your name"
             value={userName}
           ></input>
-          <button type="submit" disabled={disabled}>
+          <button className={css.button} type="submit" disabled={disabled}>
             {buttonPlay}
           </button>
         </form>
@@ -58,4 +61,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default FormGame;
