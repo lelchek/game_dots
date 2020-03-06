@@ -7,18 +7,25 @@ class Form extends Component {
   };
 
   handleChange = e => {
+    if (e.target.name === "selectMode") {
+      this.props.drawField(e.target.value);
+    }
     this.setState({ [e.target.name]: e.target.value });
   };
 
   handleSubmit = e => {
-    const { selectMode, userName } = this.state;
+    const { userName } = this.state;
     e.preventDefault();
-    this.props.startPlay(selectMode, userName);
+    this.props.startPlay(userName);
+    this.setState({
+      selectMode: "",
+      userName: ""
+    });
   };
 
   render() {
     const { selectMode, userName } = this.state;
-    const { optionsSelect } = this.props;
+    const { optionsSelect, buttonPlay } = this.props;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -46,7 +53,7 @@ class Form extends Component {
             placeholder="Enter your name"
             value={userName}
           ></input>
-          <button type="submit">PLAY</button>
+          <button type="submit">{buttonPlay}</button>
         </form>
       </div>
     );

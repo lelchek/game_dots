@@ -1,0 +1,28 @@
+.containerField {
+  display: grid;
+  border: 1px solid black;
+  height: 300px;
+  width: 300px;
+}
+
+.containerField div {
+  border: 1px solid gray;
+}
+
+.cellDefault {
+  background-color: #fff;
+}
+.cellChoice {
+  background-color: blue;
+}
+.cellWin {
+  background-color: green;
+}
+
+.cellLose {
+  background-color: red;
+}
+
+.overleyTitle {
+  height: 50px;
+}
