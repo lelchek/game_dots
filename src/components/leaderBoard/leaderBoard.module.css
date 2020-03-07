@@ -6,7 +6,6 @@
   display: flex;
   width: 250px;
   height: 60px;
-  /* line-height: 60px; */
   align-items: center;
   background-color: rgb(209, 209, 209);
   margin-bottom: 4px;
@@ -16,4 +15,5 @@
 
 .span {
   display: block;
+  color: dimgrey;
 }

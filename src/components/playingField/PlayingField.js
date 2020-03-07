@@ -11,7 +11,6 @@ class PlayingField extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.startGame && this.props.startGame !== prevProps.startGame) {
-      console.log("запуск ЖЦ СТАРТ");
       this.setState({
         playingCell: [],
         playerWin: 0,
@@ -40,7 +39,6 @@ class PlayingField extends Component {
         });
         this.timer(playCell);
       } else {
-        console.log("Победа!!!");
         this.props.winnerRecord(this.state.winner);
         this.setState({ playerWin: 0, computerWin: 0 });
       }
@@ -51,17 +49,6 @@ class PlayingField extends Component {
       this.setState({ winner: "No Winner" });
       this.props.winnerRecord(this.state.winner);
     }
-    // else {
-    //   console.log("повторно игру запустили");
-    //   console.log(
-    //     "this.props.startGame",
-    //     this.props.startGame,
-    //     arrayCellsNotPlay.length
-    //   );
-    //   this.setState({ playerWin: 0, computerWin: 0 });
-
-    //   this.props.stopPlay();
-    // }
   };
 
   winnerCheck = () => {
@@ -118,9 +105,6 @@ class PlayingField extends Component {
 
     return (
       <div>
-        <h2>
-          Игрок - {this.state.playerWin} :: Комп - {this.state.computerWin}
-        </h2>
         <div className="overleyTitle">{winner && <h2>{winner} is Win</h2>}</div>
         <div className="containerField" style={inlineStyle}>
           {arrayCells.map(cell => (

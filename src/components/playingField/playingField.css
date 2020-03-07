@@ -24,5 +24,6 @@
 }
 
 .overleyTitle {
-  height: 50px;
+  height: 80px;
+  line-height: 80px;
 }

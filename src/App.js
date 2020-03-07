@@ -4,6 +4,7 @@ import FormGame from "./components/formGame/FormGame";
 import PlayingField from "./components/playingField/PlayingField";
 import LeaderBoard from "./components/leaderBoard/LeaderBoard";
 import services from "./services";
+import css from "./app.module.css";
 var moment = require("moment");
 
 class App extends Component {
@@ -41,7 +42,6 @@ class App extends Component {
   };
 
   startPlay = userName => {
-    console.log("Start");
     this.drawField(this.state.selectModeSelect);
     this.setState({
       userName,
@@ -50,12 +50,10 @@ class App extends Component {
   };
 
   stopPlay = () => {
-    console.log("STOP");
     this.setState({ startGame: false });
   };
 
   drawField = selectModeSelect => {
-    console.log("Эперерисовка и фолс");
     const fieldSize = this.state.gameMode[selectModeSelect];
     this.setState({
       selectModeSelect,
@@ -84,8 +82,6 @@ class App extends Component {
     };
     this.setState({ buttonPlay: "Play Again" });
     this.stopPlay();
-    console.log("winner:", idWinner, winner, dateWinner);
-    console.log("objWinner", objWinner);
     await this.postWinner(objWinner);
     await this.getWinners();
   };
@@ -101,24 +97,26 @@ class App extends Component {
       buttonPlay
     } = this.state;
     return (
-      <div>
-        <FormGame
-          optionsSelect={optionsSelect}
-          startPlay={this.startPlay}
-          drawField={this.drawField}
-          buttonPlay={buttonPlay}
-          disabled={startGame}
-        />
-        <PlayingField
-          fieldSize={selectMode.field}
-          arrayCells={arrayCells}
-          playerMove={this.playerMove}
-          delay={selectMode.delay}
-          startGame={startGame}
-          userName={userName}
-          winnerRecord={this.winnerRecord}
-          stopPlay={this.stopPlay}
-        />
+      <div className={css.containerApp}>
+        <div className={css.playingFieldOverley}>
+          <FormGame
+            optionsSelect={optionsSelect}
+            startPlay={this.startPlay}
+            drawField={this.drawField}
+            buttonPlay={buttonPlay}
+            disabled={startGame}
+          />
+          <PlayingField
+            fieldSize={selectMode.field}
+            arrayCells={arrayCells}
+            playerMove={this.playerMove}
+            delay={selectMode.delay}
+            startGame={startGame}
+            userName={userName}
+            winnerRecord={this.winnerRecord}
+            stopPlay={this.stopPlay}
+          />
+        </div>
         <LeaderBoard winners={winners} />
       </div>
     );

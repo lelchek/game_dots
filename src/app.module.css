@@ -1,0 +1,16 @@
+.containerApp {
+  display: flex;
+  flex-wrap: wrap;
+  color: rgb(103, 103, 103);
+}
+
+.playingFieldOverley {
+  width: 320px;
+  /* margin: 0 auto; */
+}
+
+@media (min-width: 768px) {
+  .playingFieldOverley {
+    width: 600px;
+  }
+}

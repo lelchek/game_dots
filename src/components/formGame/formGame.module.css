@@ -40,6 +40,10 @@
   margin: 6px;
 }
 
+.button[disabled] {
+  background-color: rgb(223, 220, 220);
+}
+
 @media (min-width: 768px) {
   .container {
     width: 600px;
